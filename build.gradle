@@ -1,0 +1,21 @@
+apply plugin: "java"
+apply plugin: "maven"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+def dependenciesCopyTargetName = 'dependencies'
+
+repositories {
+	mavenCentral()
+}
+dependencies {
+	compile	'org.apache.pdfbox:pdfbox:1.8.8'
+}
+
+task copyLib(type: Copy){
+	from configurations.compile
+	into 'build/lib'
+}
